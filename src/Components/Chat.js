@@ -40,7 +40,7 @@ function Chat() {
     }
   }, [sendMessage])
   useEffect(() => {
-    socket.current = io('http://localhost:8800/');
+    socket.current = io('https://nightingale-chatapp-socket.onrender.com/');
     socket.current.emit("new-user-add", id);
     socket.current.on('get-users', (users) => {
       setOnlineUser(users)
