@@ -1,0 +1,13 @@
+.imgdivsetimage img{
+    margin-top: 20px;
+    padding: 5px;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}
+.conversation {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 0.5rem;
+    padding: 10px;
+}
