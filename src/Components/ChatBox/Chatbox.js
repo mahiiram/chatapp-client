@@ -9,7 +9,6 @@ import SendIcon from '@mui/icons-material/Send';
 
 function Chatbox({ chat, currentUser, setSendMessage, receiveMessage }) {
   const [userData, setUserData] = useState(null);
-  const [image, setImage] = useState([])
   const [messages, setMessages] = useState([])
   const [newMessage, setNewMessage] = useState('');
   const scroll = useRef();
@@ -30,7 +29,6 @@ function Chatbox({ chat, currentUser, setSendMessage, receiveMessage }) {
       try {
         const { data } = await axios.get(`${host}/api/getuser/${userId}`)
         setUserData(data)
-        setImage(data.AvatarImage)
       } catch (error) {
         console.log(error)
       }
@@ -87,7 +85,7 @@ function Chatbox({ chat, currentUser, setSendMessage, receiveMessage }) {
             <div className='chat-header'>
               <div className='follower'>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px',marginTop:'10px' }}>
-                  <img src={userData?.AvatarImage ? `${host}/images/` + image : "https://png.pngtree.com/png-vector/20201203/ourmid/pngtree-businessman-icon-vector-and-glyph-png-image_2499766.jpg"} alt='' className='followerimage' style={{ width: '50px', height: '50px', borderRadius: '50%' }} />
+                  <img src={userData?.AvatarImage ? `${host}/images/${userData.AvatarImage}` : "https://png.pngtree.com/png-vector/20201203/ourmid/pngtree-businessman-icon-vector-and-glyph-png-image_2499766.jpg"} alt='' className='followerimage' style={{ width: '50px', height: '50px', borderRadius: '50%' }} />
                   <div className='name' style={{ display: 'flex', flexDirection: "column" }}>
                     <span style={{ fontSize: "1rem" }}>{userData?.username}</span>
                   </div>

@@ -5,8 +5,6 @@ import '../../Styles/Chat.css'
 
 function Conversation({data,currentUserId,online}) {
     const [userData,setUserData] = useState([]);
-    const [image,setImage] = useState([])
-   
     const followerId = data.members.find((id)=> id!==currentUserId)
     useEffect(()=>{
        console.log(followerId)
@@ -14,7 +12,6 @@ function Conversation({data,currentUserId,online}) {
         try {
         const {data} = await axios.get(`${host}/api/getuser/${followerId}`)
           setUserData(data)
-          setImage(data.AvatarImage)
           console.log(data)
         } catch (error) {
             console.log(error)
@@ -28,7 +25,7 @@ function Conversation({data,currentUserId,online}) {
     <div className='follower conversation'>
         <div >
             {online && <div className='online-dot'></div>}
-            <img src={userData?.AvatarImage ? `${host}/images/`+image : "https://png.pngtree.com/png-vector/20201203/ourmid/pngtree-businessman-icon-vector-and-glyph-png-image_2499766.jpg"} alt='' className='followerimage' style={{width:'50px', height:'50px',borderRadius:'50%'}}/>
+            <img src={userData?.AvatarImage ? `${host}/images/${userData.AvatarImage}` : "https://png.pngtree.com/png-vector/20201203/ourmid/pngtree-businessman-icon-vector-and-glyph-png-image_2499766.jpg"} alt='' className='followerimage' style={{width:'50px', height:'50px',borderRadius:'50%'}}/>
                 <div className='name' style={{display:'flex',flexDirection:"column"}}>
                     <span style={{fontSize:"1rem"}}>{userData?.username}</span>
                     <span style={{fontSize:"0.8rem"}}>{online? "online":"offline"}</span>
